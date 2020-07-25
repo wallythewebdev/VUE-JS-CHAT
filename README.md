@@ -1,5 +1,11 @@
 # ninja_chat
 
+## Base level project: 
+
+this is the origianl project with no modifications or changes to the UI 
+
+[## NINJA CHAT V1](ninja-chat-ad4d9.firebaseapp.com)
+
 ## Project setup
 ```
 npm install
