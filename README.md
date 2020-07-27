@@ -1,5 +1,9 @@
 # ninja_chat
 
+## current version v2
+
+## [NINJA CHAT V2](https://ninjaversion2chat.web.app/)
+
 ## Base level project: 
 
 this is the origianl project with no modifications or changes to the UI 
