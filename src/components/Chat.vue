@@ -1,6 +1,6 @@
 <template>
     <div class="chat container">
-        <h2 class="center teal-text">Ninja Chat</h2>
+        <h2 class="center teal-text">Chat Group: {{ chatName }}</h2>
         <div class="card">
             <div class="card-content">
                 <ul class="messages" v-chat-scroll>
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="card-action">
-            <NewMessage :name="name" />
+            <NewMessage :name="name" :chatName="chatName" />
         </div>
     </div>
 </template>
@@ -25,31 +25,34 @@ import moment from 'moment'
 
 export default {
     name: 'Chat',
-    props: ['name'],
+    props: ['name', 'chatName'],
     components: {
-        NewMessage
+        NewMessage,
     },
     data(){
         return{
-            messages: []
+            messages: [],
         }
     },
     created(){
-        let ref = db.collection('messages').orderBy('timestamp')
+        let ref = db.collection(`messages`).orderBy('timestamp');
 
         ref.onSnapshot(snapshot => {
             snapshot.docChanges().forEach(change => {
                 if(change.type === 'added'){
                     let doc = change.doc
-                    this.messages.push({
+                    if(doc.data().chatName == this.chatName){
+                        this.messages.push({
                         id: doc.id,
                         name: doc.data().name,
                         content: doc.data().content,
-                        timestamp: moment(doc.data().timestamp).format('lll')
-                    })
+                        timestamp: moment(doc.data().timestamp).format('lll'),
+                        })
+                    }
                 }
             })
         })
+        
 
         
     }
