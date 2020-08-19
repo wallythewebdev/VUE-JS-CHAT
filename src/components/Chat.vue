@@ -34,9 +34,19 @@ export default {
             messages: [],
         }
     },
+    methods: {
+        async playSound(){
+            let audio = new Audio('@/assets/coinNoise.mp3');
+            await audio.play()
+            console.log('Audio Ran')
+        }
+    },
+    watch: {
+        messages: 'playSound'
+    },
     created(){
         let ref = db.collection(`messages`).orderBy('timestamp');
-
+        
         ref.onSnapshot(snapshot => {
             snapshot.docChanges().forEach(change => {
                 if(change.type === 'added'){

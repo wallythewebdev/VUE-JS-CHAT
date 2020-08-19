@@ -14,6 +14,11 @@ this is the origianl project with no modifications or changes to the UI
 
 * Ability to have seperate chat rooms 
 
+* due to the way that firease handles its collections of Databases my orignal aproach would not work - 
+instead I have added a key to the object contructor for the database which is the chat name: 
+
+chatName: [user input]
+
 - I think the best way to aproach this is to have a specific hash for the data base, right now the database is just called messages and all messages get put there for everyone to see - I think instead I could create a function that would say create database messages_XXXX
 
 The user would also have a screen avalible to use log into specific chats based on the _XXXX name
